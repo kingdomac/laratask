@@ -20,7 +20,8 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect()->route('login');
 });
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->as('admin.')->middleware(['admin'])->group(function () {

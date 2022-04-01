@@ -1299,6 +1299,9 @@ input:checked + .toggle-bg {
 .h-72 {
   height: 18rem;
 }
+.h-screen {
+  height: 100vh;
+}
 .max-h-56 {
   max-height: 14rem;
 }
@@ -1313,6 +1316,9 @@ input:checked + .toggle-bg {
 }
 .min-h-screen {
   min-height: 100vh;
+}
+.min-h-screen-75 {
+  min-height: 75vh;
 }
 .w-5 {
   width: 1.25rem;
@@ -1878,6 +1884,10 @@ input:checked + .toggle-bg {
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(118 169 250 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -2875,6 +2885,10 @@ input:checked + .toggle-bg {
 
   .md\:bottom-0 {
     bottom: 0px;
+  }
+
+  .md\:right-0 {
+    right: 0px;
   }
 
   .md\:mt-4 {

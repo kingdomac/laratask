@@ -55,6 +55,21 @@ class Issue extends Model
         );
     }
 
+    public function isCompleted(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->status_id == StatusEnum::COMPLETED->value,
+        );
+    }
+
+    public function isVerified(): Attribute
+    {
+        return new Attribute(
+            get: fn () => $this->status_id == StatusEnum::VERIFIED->value,
+        );
+    }
+
+
     public function project()
     {
         return $this->belongsTo(Project::class);

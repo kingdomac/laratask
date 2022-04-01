@@ -1,9 +1,10 @@
 <div class="relative">
     @if ($show)
         <div id="task-modal"
-            class="overflow-x-hidden fixed md:relative bg-black bg-transparent bg-opacity-30 rounded-lg p-2 right-0 left-0 top-4 z-50 justify-center items-center h-full md:inset-0">
+            class="overflow-x-hidden fixed  bg-black bg-transparent bg-opacity-30 rounded-lg p-2 right-0 left-0 top-4 z-50 justify-center items-center h-full md:inset-0">
             <div class="relative w-full max-w-md ">
-                <div class="relative bg-white rounded-lg  shadow dark:bg-gray-700 " id="task-modal-form">
+                <div @click.away="showTaskForm=false;selectedIssue=null"
+                    class="relative bg-white rounded-lg right-0  shadow dark:bg-gray-700 " id="task-modal-form">
                     <div class="flex justify-between items-center p-2">
                         <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ __('Create New Issue') }}</h3>
                         <button @click="showTaskForm=false;selectedIssue=null" wire:loading.class="opacity-10"

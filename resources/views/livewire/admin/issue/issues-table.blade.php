@@ -132,7 +132,7 @@
             <div id="ajax-msg"
                 class="bg-green-100 hidden rounded-lg py-2 px-6 mb-2 text-xs text-green-700 items-center w-full">
             </div>
-            <div class="flex">
+            <div wire:poll.30000ms class="flex">
                 <div class="w-full">
                     <table border="0" class="items-center w-full bg-transparent">
                         @if (count($issues))
@@ -193,10 +193,10 @@
                         <tbody id="page_list">
                             @foreach ($issues as $key => $issue)
                                 <tr id="{{ $issue->id }}"
+                                    :class="selectedIssue == {{ $issue->id }} ? 'bg-blue-300' : ''"
                                     class="w-full @if ($issue->is_new || $issue->count_new_children) bg-green-100 hover:bg-green-50
                                     @elseif($issue->isCanceled) bg-red-200 hover:bg-red-100
-                                    @else hover:bg-gray-100 @endif"
-                                    :class="selectedIssue == {{ $issue->id }} ? 'bg-blue-300' : ''">
+                                    @else hover:bg-gray-100 @endif">
                                     <td
                                         class="w-full border-t-0 px-6 align-middle
                                          text-left border-l-0 border-r-0
@@ -313,6 +313,12 @@
                                                 </div>
                                             @else
                                                 {{ $issue->status ? $issue->status?->name : __('new') }}
+                                                @if ($issue->isCompleted && auth()->user()->isSuperAdmin)
+                                                    <a wire:loading.class='opacity-50'
+                                                        wire:target='verify({{ $issue->id }})'
+                                                        wire:click.prevent="verify({{ $issue->id }})" href="#"
+                                                        class="p-2 bg-blue-500 text-gray-200 rounded-lg">{{ __('verify') }}</a>
+                                                @endif
                                             @endif
 
                                         </div>

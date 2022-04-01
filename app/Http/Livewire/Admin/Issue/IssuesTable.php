@@ -8,11 +8,13 @@ use App\Models\Status;
 use App\Enums\RoleEnum;
 use App\Enums\StatusEnum;
 use App\Http\Services\IssueService;
+use App\Http\Services\NotificationService;
 use App\Http\Traits\WithAlert;
 use Livewire\Component;
 use App\Models\Priority;
 use App\Http\Traits\WithSorting;
 use App\Models\Sprint;
+use App\Notifications\NewVerifiedIssue;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Response;
@@ -65,11 +67,23 @@ class IssuesTable extends Component
 
     public function delete()
     {
+        abort_if(!auth()->user()->isSuperAdmin, Response::HTTP_FORBIDDEN);
         $issue = Issue::findOrFail($this->issueDeleteId);
         $issue->delete();
         $this->hideDeleteModal();
         session()->flash('message', trans('Successfully deleted'));
         if ($this->parentId) $this->emitTo('admin.issue.issue-details', 'refresh');
+    }
+
+    public function verify(Issue $issue)
+    {
+        abort_if(!auth()->user()->isSuperAdmin, Response::HTTP_FORBIDDEN);
+        if ($issue->isCompleted) {
+            $issue->status_id = StatusEnum::VERIFIED->value;
+            $issue->save();
+            $issue->load('assignedTo');
+            NotificationService::notifyUser($issue->assignedTo, new NewVerifiedIssue($issue));
+        }
     }
 
     public function removeSprint($issueId)
