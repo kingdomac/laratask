@@ -5,10 +5,10 @@
             {{-- wire:poll.keep-alive.10000ms='countUnreadNotifications' --}}
             <button
                 class="relative flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-
-                <i class="fas fa-bell"></i>
-
-                <span x-show="!bellClicked" id="notification-counter">
+                @if (count($notifications))
+                    <i class="fas fa-bell"></i>
+                @endif
+                <span id="notification-counter">
                     @if ($countUnreadNotifications)
                         <a
                             class="absolute rounded-full text-left text-[10px] bg-red-600 text-white px-1.5 -top-3 -left-3">
@@ -37,10 +37,10 @@
                                 </span>
                                 <span class="text-yellow-400"> -
                                     {{ $notification->data['project_name'] ?? '' }}</span>
-                                <div class="flex justify-between text-gray-400 text-xs">
+                                <div class="flex text-gray-400 text-xs">
                                     <div>{{ $notification->created_at->diffForHumans() }}</div>
                                     <a wire:click.prevent="delete('{{ $notification->id }}')" href="#"
-                                        class="text-red-400">{{ __('delete') }}</a>
+                                        class="text-red-400 ml-2">{{ __('delete') }}</a>
                                 </div>
                             </div>
                         </div>

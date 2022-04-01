@@ -317,7 +317,7 @@
                                                     <a wire:loading.class='opacity-50'
                                                         wire:target='verify({{ $issue->id }})'
                                                         wire:click.prevent="verify({{ $issue->id }})" href="#"
-                                                        class="p-2 bg-blue-500 text-gray-200 rounded-lg">{{ __('verify') }}</a>
+                                                        class="p-1 text-[10px] bg-blue-500 text-gray-200 rounded-lg">{{ __('verify') }}</a>
                                                 @endif
                                             @endif
 

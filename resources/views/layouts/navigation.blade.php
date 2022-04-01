@@ -1,10 +1,10 @@
-<nav x-data="{ open: false, bellClicked:false }" class="bg-white w-full border-b border-gray-100">
+<nav x-data="{ open: false, bellClicked: false }" class="bg-white w-full border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end sm:h-16">
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden md:flex sm:items-center sm:ml-6">
                 @livewire('admin.notification-menu')
 
                 <x-dropdown align="right" width="48">

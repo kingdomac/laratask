@@ -67,6 +67,7 @@
                             <div>
                                 <x-label for="status" class="capitalize mb-1" :value="__('status')" />
                                 <x-select wire:model="statusId" id="status">
+                                    <option value="">{{ __('New') }}</option>
                                     @foreach ($statuses as $status)
                                         <option value="{{ $status->id }}" style="color:{{ $status->color }}">
                                             {{ $status->name }}</option>

@@ -1,4 +1,4 @@
-<nav x-data="{maxim: false}" x-cloak x-transition :class="maxim ? 'md:w-64' : 'md:w-20'"
+<nav x-data="{ maxim: false }" x-cloak x-transition :class="maxim ? 'md:w-64' : 'md:w-20'"
     class="transition-all ease-in-out md:left-0 md:block md:fixed md:top-0 md:bottom-0
     md:overflow-y-auto md:flex-row md:flex-nowrap
     md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative
@@ -16,12 +16,13 @@
             type="button" onclick="toggleNavbar('example-collapse-sidebar')">
             <i class="fas fa-bars"></i>
         </button>
+        <div class="md:hidden">@livewire('admin.notification-menu')</div>
         <a x-show="maxim"
             class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             href="{{ route('admin.dashboard') }}">
             LARATASK
         </a>
-        <ul class="md:hidden items-center flex flex-wrap list-none">
+        {{-- <ul class="md:hidden items-center flex flex-wrap list-none">
             <li class="inline-block relative">
                 <a class="text-blueGray-500 block py-1 px-3" href="#pablo"
                     onclick="openDropdown(event,'notification-dropdown')"><i class="fas fa-bell"></i></a>
@@ -57,7 +58,7 @@
                         link</a>
                 </div>
             </li>
-        </ul>
+        </ul> --}}
         <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
             id="example-collapse-sidebar">
             <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
@@ -85,6 +86,10 @@
             </form>
             <!-- Divider -->
             <hr x-show="maxim" class="my-4 md:min-w-full" /> --}}
+            <h6
+                class="md:min-w-full text-gray-500 text-xs uppercase font-bold block md:hidden text-center no-underline bg-yellow-50 p-2 mb-3">
+                {{ auth()->user()->name }}
+            </h6>
             <!-- Heading -->
             <h6 x-show="maxim"
                 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
@@ -93,12 +98,14 @@
             <!-- Navigation -->
 
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+
                 <li class="items-center">
                     <a href="{{ route('admin.dashboard') }}"
                         class="text-xs uppercase py-3 font-bold block {{ request()->routeIs('admin.dashboard') ? 'text-green-500' : 'text-blueGray-700' }} ">
                         <i
                             class="fas fa-tv mr-2 text-sm opacity-75 {{ request()->routeIs('admin.dashboard') ? 'text-green-500' : 'text-blueGray-700' }}"></i>
                         <span x-show="maxim">{{ __('Dashboard') }}</span>
+                        <span class="md:hidden">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
                 @if (auth()->user()->isSuperAdmin)
@@ -108,6 +115,7 @@
                             <i
                                 class="fas fa-users mr-2 text-sm {{ request()->routeIs('admin.users.index') ? 'text-green-500' : 'text-blueGray-700' }}"></i>
                             <span x-show="maxim">{{ __('users') }}</span>
+                            <span class="md:hidden">{{ __('users') }}</span>
                         </a>
                     </li>
                 @endif
@@ -124,11 +132,9 @@
                         @endif
 
                         <span x-show="maxim">{{ __('projects') }}</span>
+                        <span class="md:hidden">{{ __('projects') }}</span>
                     </a>
                 </li>
-
-
-
             </ul>
 
             <!-- Divider -->
@@ -137,6 +143,7 @@
             <h6 x-show="maxim"
                 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
                 <span x-show="maxim">{{ __('settings') }}</span>
+                <span class="md:hidden">{{ __('settings') }}</span>
             </h6>
             <!-- Navigation -->
 
@@ -147,6 +154,7 @@
                         <i
                             class="fas fa-user-circle mr-2 text-sm  {{ request()->routeIs('admin.profile.edit') ? 'text-green-500' : 'text-blueGray-700' }}"></i>
                         <span x-show="maxim">{{ __('profile') }}</span>
+                        <span class="md:hidden">{{ __('profile') }}</span>
                     </a>
                 </li>
                 @if (auth()->user()->isSuperAdmin)
@@ -156,10 +164,18 @@
                             <i
                                 class="fas fa-tools mr-2 text-sm {{ request()->routeIs('admin.setup') ? 'text-green-500' : 'text-blueGray-700' }}"></i>
                             <span x-show="maxim">{{ __('setup') }}</span>
+                            <span class="md:hidden">{{ __('setup') }}</span>
                         </a>
                     </li>
                 @endif
-
+                <li class="items-left md:hidden">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button
+                            class="bg-blue-500 text-gray-200 rounded-lg w-full p-1 text-sm hover:bg-blue-600 hover:shadow-sm hover:-translate-y-1 ">{{ __('Log Out') }}</button>
+                    </form>
+                </li>
             </ul>
 
             <!-- Navigation -->

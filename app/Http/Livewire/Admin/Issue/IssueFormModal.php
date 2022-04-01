@@ -157,7 +157,7 @@ class IssueFormModal extends Component
 
                 $data['is_new'] = true;
             }
-
+            $data['order'] = (int)Issue::where('project_id', $this->project->id)->max('order') + 1;
             return Issue::create($data);
         });
 
