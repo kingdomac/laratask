@@ -93,18 +93,16 @@
                                 </div>
                             </div>
                         @endif
-                        @if ($issue?->user_id && $issueId && (auth()->user()->id === $userId || auth()->user()->isSuperAdmin))
+                        @if ($issue?->user_id && $issueId && (auth()->id() === $userId || auth()->user()->isSuperAdmin))
                             <div class="flex flex-wrap gap-2">
                                 <div>
-                                    <x-label for="time_spent" class="capitalize mb-1"
-                                        :value="__('time spent /minute')" />
+                                    <x-label for="time_spent" class="capitalize mb-1" :value="__('time spent /minute')" />
                                     <x-input wire:model.defer="timeSpent" id="time_spent" class="block mt-1 w-full"
                                         type="number" min="0" />
                                     <x-alert name="timeSpent" type="error" />
                                 </div>
                                 <div>
-                                    <x-label for="completion_perc" class="capitalize mb-1"
-                                        :value="__('completion %')" />
+                                    <x-label for="completion_perc" class="capitalize mb-1" :value="__('completion %')" />
                                     <x-input wire:model.defer="completionPerc" id="completion_perc"
                                         class="block mt-1 w-full" type="number" min="0" />
                                     <x-alert name="completionPerc" type="error" />
@@ -116,7 +114,7 @@
                                 <x-label for="users" class="capitalize mb-1" :value="__('assigned to')" />
                                 <x-select wire:model="userId" id="users">
                                     <option value="">-- select one --</option>
-                                    <option value="{{ auth()->user()->id }}">{{ __('me') }}</option>
+                                    <option value="{{ auth()->id() }}">{{ __('me') }}</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach

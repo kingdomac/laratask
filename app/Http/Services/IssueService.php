@@ -211,7 +211,7 @@ class IssueService
     {
         return Issue::query()
             ->with('label', 'priority', 'status', 'parent.label', 'creator', 'updater', 'assigner', 'sprint')
-            ->when(auth()->user()->role_id == RoleEnum::ADMIN->value, function ($query) {
+            ->when(auth()->user()->isAdmin, function ($query) {
                 $query->withCount(['children' => function ($q) {
                     $q->where(function ($q) {
                         $q->where('user_id', auth()->user()->id)

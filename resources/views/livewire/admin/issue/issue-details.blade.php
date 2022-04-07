@@ -90,7 +90,7 @@
                                     </div>
 
                                     <div class="capitalize">
-                                        @if ($issue->updater->id != auth()->user()->id)
+                                        @if ($issue->updater->id != auth()->id())
                                             {{ $issue->updater?->name }}
                                         @else
                                             {{ __('me') }}

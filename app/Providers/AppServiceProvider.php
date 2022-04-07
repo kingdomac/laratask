@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.aside-menu', function ($view) {
             $countNewIssues =  Issue::select('id')
                 ->when(auth()->user() && auth()->user()->isAdmin, function ($q) {
-                    $q->where('user_id', auth()->user()->id);
+                    $q->where('user_id', auth()->id());
                 })
                 ->where('is_new', true)
                 ->count();

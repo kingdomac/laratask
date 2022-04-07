@@ -111,7 +111,7 @@ class IssueDetails extends Component
         $this->issue = IssueService::loadIssue($this->issueId);
         $this->storyPoint = $this->issue->story_point;
         $this->valuePoint = $this->issue->value_point;
-        if ($this->issue->is_new && $this->issue->user_id === auth()->user()->id) {
+        if ($this->issue->is_new && $this->issue->user_id === auth()->id()) {
             $this->issue->is_new = 0;
             $this->issue->save();
         }
