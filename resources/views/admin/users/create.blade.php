@@ -31,7 +31,8 @@
                         <div>
                             <x-label for="role_id" class="capitalize mb-1" value="{{ __('role') }}" />
                             <x-select name="role_id" id="role_id">
-                                <option value="" @selected('role_id')>-- {{ __('select role') }} --</option>
+                                <option value="" @selected('role_id')>-- {{ __('select role') }} --
+                                </option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" @selected(old('role_id', $user->role_id) == $role->id)>
                                         {{ $role->name }}</option>
@@ -41,9 +42,8 @@
                         </div>
                         <div>
                             <x-label for="job_title" class="capitalize mb-1" value="job title" />
-                            <x-input-icon :value="old('job_title',$user->job_title)"
-                                icon='<i class="fas fa-briefcase"></i>' name="job_title" id="job_title"
-                                class="block mt-1 w-full" type="text" />
+                            <x-input-icon :value="old('job_title', $user->job_title)" icon='<i class="fas fa-briefcase"></i>' name="job_title"
+                                id="job_title" class="block mt-1 w-full" type="text" />
                             <x-alert name="job_title" type="error" />
                         </div>
                         <div>
@@ -54,22 +54,21 @@
                         </div>
                         <div>
                             <x-label for="email" class="capitalize mb-1" value="email address" />
-                            <x-input-icon :value="old('email',$user->email)" icon="<i class='fa-solid fa-envelope'></i>"
-                                name="email" id="email" class="block mt-1 pl-8 w-full" type="text" />
+                            <x-input-icon :value="old('email', $user->email)" icon="<i class='fa-solid fa-envelope'></i>" name="email"
+                                id="email" class="block mt-1 pl-8 w-full" type="text" />
                             <x-alert name="email" type="error" />
                         </div>
                         <div>
                             <x-label for="phone" class="capitalize mb-1" value="phone" />
-                            <x-input-icon :value="old('phone',$user->phone)" icon='<i class="fa-solid fa-phone"></i>'
-                                name="phone" id="phone" class="block mt-1 w-full" type="text" />
+                            <x-input-icon :value="old('phone', $user->phone)" icon='<i class="fa-solid fa-phone"></i>' name="phone"
+                                id="phone" class="block mt-1 w-full" type="text" />
                             <x-alert name="phone" type="error" />
                         </div>
 
                         <div>
                             <x-label for="address" class="capitalize mb-1" value="address" />
-                            <x-input-icon :value="old('address',$user->address)"
-                                icon='<i class="fa-solid fa-location-pin"></i>' name="address" id="address"
-                                class="block mt-1 w-full" type="text" />
+                            <x-input-icon :value="old('address', $user->address)" icon='<i class="fa-solid fa-location-pin"></i>'
+                                name="address" id="address" class="block mt-1 w-full" type="text" />
                             <x-alert name="address" type="error" />
                         </div>
 

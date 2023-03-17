@@ -3,7 +3,7 @@
     if ($avg <= 50) {
         $color = 'red';
     } elseif ($avg > 50 && $avg < 100) {
-        $color = 'lightBlue';
+        $color = 'blue';
     } else {
         $color = 'green';
     }
