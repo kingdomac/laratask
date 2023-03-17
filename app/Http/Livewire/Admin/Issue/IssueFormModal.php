@@ -117,6 +117,7 @@ class IssueFormModal extends Component
 
     public function store()
     {
+        if ($this->parentId) $this->labelId = LabelEnum::TASK->value;
         if (!auth()->user()->isSuperAdmin) return;
 
         // it means that a new story is always empty so it cannot be assigned

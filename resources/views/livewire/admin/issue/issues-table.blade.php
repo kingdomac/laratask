@@ -88,8 +88,7 @@
                                             type="checkbox" id="priority{{ $priority->id }}"
                                             value="{{ $priority->id }}">
                                         <label class="form-check-label capitalize inline-block text-gray-800"
-                                            for="priority{{ $priority->id }}"
-                                            style="color:{{ $priority->color }}">
+                                            for="priority{{ $priority->id }}" style="color:{{ $priority->color }}">
                                             {{ $priority->name }}
                                         </label>
                                     </div>
@@ -201,7 +200,7 @@
                                         class="w-full border-t-0 px-6 align-middle
                                          text-left border-l-0 border-r-0
                                         text-xs whitespace-nowrap p-4">
-                                        <div class="flex gap-1" title="{{ $issue->label->name }}">
+                                        <div class="flex items-top gap-1" title="{{ $issue->label->name }}">
 
                                             <div style="color:{{ $issue->label->color }}">
 
@@ -209,9 +208,9 @@
                                                 {!! $issue->label->icon !!}
                                             </div>
                                             <div class="font-bold text-blueGray-600">
-                                                <div class="flex items-center gap-1">
+                                                <div class="flex items-top gap-1">
                                                     <a
-                                                        href="{{ route('admin.projects.issues.show', [$project->id,$issue->id,'userId' => request('userId'),'sprintId' => request('sprintId')]) }}">
+                                                        href="{{ route('admin.projects.issues.show', [$project->id, $issue->id, 'userId' => request('userId'), 'sprintId' => request('sprintId')]) }}">
                                                         {{ $issue->title }}
                                                     </a>
                                                     @if ($issue->sprint_id && !$parentId)
@@ -230,7 +229,7 @@
                                                 </div>
 
                                                 <div class="text-[10px]">
-                                                    {{ $issue->children_count && $issue->count_new_children != $issue->children_count? '[' . $issue->children_count . ' ' . \Str::of('subtask')->plural($issue->children_count) . ']': '' }}
+                                                    {{ $issue->children_count && $issue->count_new_children != $issue->children_count ? '[' . $issue->children_count . ' ' . \Str::of('subtask')->plural($issue->children_count) . ']' : '' }}
                                                     <span class="text-red-400">
                                                         {{ $issue->count_new_children ? '[' . $issue->count_new_children . ' unviewed' . ']' : '' }}
                                                     </span>
@@ -269,8 +268,7 @@
                                                     @endif
                                                     @if ($issue->completed_count)
                                                         <div>
-                                                            <span
-                                                                class="font-semibold">{{ __('completed') }}:</span>
+                                                            <span class="font-semibold">{{ __('completed') }}:</span>
                                                             <span
                                                                 class="text-blue-500">[{{ $issue->completed_count }}]</span>
                                                         </div>
@@ -316,7 +314,8 @@
                                                 @if ($issue->isCompleted && auth()->user()->isSuperAdmin)
                                                     <a wire:loading.class='opacity-50'
                                                         wire:target='verify({{ $issue->id }})'
-                                                        wire:click.prevent="verify({{ $issue->id }})" href="#"
+                                                        wire:click.prevent="verify({{ $issue->id }})"
+                                                        href="#"
                                                         class="p-1 text-[10px] bg-blue-500 text-gray-200 rounded-lg">{{ __('verify') }}</a>
                                                 @endif
                                             @endif
@@ -386,7 +385,8 @@
 
                                                 <a wire:loading.class='opacity-10'
                                                     wire:target="showDeleteModal({{ $issue->id }})"
-                                                    wire:click.prevent="showDeleteModal({{ $issue->id }})" href="#">
+                                                    wire:click.prevent="showDeleteModal({{ $issue->id }})"
+                                                    href="#">
                                                     <i class="fa-solid fa-trash text-sm text-red-600" title="delete">
                                                     </i>
                                                 </a>
@@ -416,7 +416,8 @@
         <div class="bg-gray-50 rounded-lg py-5 px-6 mb-3 text-base text-gray-500 inline-flex items-center w-full"
             role="alert">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grin-hearts"
-                class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                class="w-4 h-4 mr-2 fill-current" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 496 512">
                 <path fill="currentColor"
                     d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zM90.4 183.6c6.7-17.6 26.7-26.7 44.9-21.9l7.1 1.9 2-7.1c5-18.1 22.8-30.9 41.5-27.9 21.4 3.4 34.4 24.2 28.8 44.5L195.3 243c-1.2 4.5-5.9 7.2-10.5 6l-70.2-18.2c-20.4-5.4-31.9-27-24.2-47.2zM248 432c-60.6 0-134.5-38.3-143.8-93.3-2-11.8 9.2-21.5 20.7-17.9C155.1 330.5 200 336 248 336s92.9-5.5 123.1-15.2c11.4-3.6 22.6 6.1 20.7 17.9-9.3 55-83.2 93.3-143.8 93.3zm133.4-201.3l-70.2 18.2c-4.5 1.2-9.2-1.5-10.5-6L281.3 173c-5.6-20.3 7.4-41.1 28.8-44.5 18.6-3 36.4 9.8 41.5 27.9l2 7.1 7.1-1.9c18.2-4.7 38.2 4.3 44.9 21.9 7.7 20.3-3.8 41.9-24.2 47.2z">
                 </path>
