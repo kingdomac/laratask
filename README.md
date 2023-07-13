@@ -1,11 +1,11 @@
 ## About Laratask Project
 
-Laratask is a project management system which follows Agile methodology:
+Laratask is a project management system that follows Agile methodology:
 
 -   Issues management [Stories, Tasks, Bugs, Tickets]
--   Isuses Statuses lifecycle [Todo, In progress, Pending, Completed, Verified, Canceled]
+-   Issues Statuses lifecycle [Todo, In progress, Pending, Completed, Verified, Canceled]
 -   Project Cycle [completion percentage, Sprints]
--   Users managment
+-   Users management
 -   User roles [Super admin, Admin, Agent]
 -   Dashboard [Online users, Charts, Latest Projects]
 -   Notification System and tracker (Broadcasting using pusher js)
